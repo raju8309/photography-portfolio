@@ -11,14 +11,12 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Configure connection pool with retry strategy
+// Configure connection pool with standard configuration
 export const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   connectionTimeoutMillis: 5000, // 5 second timeout
   max: 20, // Maximum number of clients in the pool
-  idleTimeoutMillis: 30000, // Close idle clients after 30 seconds
-  retryInterval: 100, // Time between connection retries
-  maxRetries: 3 // Maximum number of connection retries
+  idleTimeoutMillis: 30000 // Close idle clients after 30 seconds
 });
 
 // Add event listeners for pool errors
